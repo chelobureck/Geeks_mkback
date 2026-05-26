@@ -10,9 +10,11 @@ python manage.py migrate --noinput
 
 # Collect static files
 echo "Collecting static files..."
+# Create static directory if it doesn't exist
+mkdir -p /app/static
 # Clear static directory to avoid stale files
 rm -rf /app/static/*
-python manage.py collectstatic --noinput --clear
+python manage.py collectstatic --noinput
 
 # Start Gunicorn
 echo "Starting server..."
