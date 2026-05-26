@@ -6,8 +6,7 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Add apps directory to sys.path
-sys.path.append(os.path.join(BASE_DIR, 'apps'))
+# BASE_DIR is already in sys.path, and we use full paths (apps.users) for apps.
 
 env = environ.Env(
     DEBUG=(bool, False)
