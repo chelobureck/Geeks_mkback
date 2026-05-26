@@ -1,0 +1,12 @@
+Django>=4.2,<5.0
+djangorestframework
+django-environ
+drf-yasg
+django-jazzmin
+django-cors-headers
+Pillow
+whitenoise
+gunicorn
+python-dotenv
+psycopg2-binary
+setuptools
