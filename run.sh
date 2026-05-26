@@ -3,19 +3,17 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Create migrations for apps
-echo "Creating migrations..."
-python manage.py makemigrations users
-python manage.py makemigrations education
-
 # Apply database migrations
 echo "Applying database migrations..."
-python manage.py migrate
+python manage.py makemigrations --noinput
+python manage.py migrate --noinput
 
 # Collect static files
 echo "Collecting static files..."
-python manage.py collectstatic --noinput
+# Clear static directory to avoid stale files
+rm -rf /app/static/*
+python manage.py collectstatic --noinput --clear
 
 # Start Gunicorn
 echo "Starting server..."
-exec gunicorn core.wsgi:application --bind 0.0.0.0:8000
+exec gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120
